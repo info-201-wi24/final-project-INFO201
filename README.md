@@ -1,7 +1,7 @@
-# Title of Your Final Project Here 
+# Crime Rate vs. Minimum Wage
 ## INFO 201 "Foundational Skills for Data Science"
 
-Authors: Your names here
+Authors: Kevin Lee, Maikanh Tran, Nicholas Chou
 
 
 For the Final Project -- Data Wrangling, add the following to this code repository:
