@@ -21,7 +21,9 @@ Feel free to delete these instructions for your final README.md file and to make
 
 # Introduction
 
-
+We first looked at some datasets that involved fruits and vegetable prices, however, that dataset has been taken down and we can no longer access it. We opted for a different dataset, where national crimes and types of crimes were collected.
+We also took on the minimum wage dataset, and narrowed the dataset to a single year of 1973, to analyze if states' minimum wage had any correlation to crime rates in said state. 
+Our research is to prove that the correlation between minimum wage and crimes are almost non-existent. 
 
 # Conclusion / Summary Takeaways
 
