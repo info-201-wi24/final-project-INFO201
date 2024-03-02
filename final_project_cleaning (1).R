@@ -35,6 +35,12 @@ summary_df <- crime_rate_vs_min_wage %>%
   summarise(AvgMinWage = mean(MinWage, na.rm = TRUE),
             AvgTotalCrimeRate = mean(TotalCrimeRate, na.rm = TRUE))
 
+# Further cleaning to delete NA values that don't apply to the dataset
+clean_data <- crime_rate_vs_min_wage %>%
+  mutate(Footnote = NULL) %>%
+  na.omit()
+
+
 # Note - your summarization table does not need to be exported to a csv file, 
 # you just need to have code that create this data frame. 
 # Displaying summarization data frame
