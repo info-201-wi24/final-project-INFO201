@@ -17,19 +17,22 @@ library(DT)
 ui <- fluidPage(theme = shinytheme("superhero"),
                 navbarPage(
                   "Crime in States, VS Minimum Wage, 1973",
-                  tabPanel("Minimum Wage in States",
-                           sidebarPanel(
-                             tags$h3("Input:"),
-                             textInput("txt1", "State", ""),
-                             actionButton("search_button", "Search")
-                             
-                           ), # sidebarPanel
+                  tabPanel("Introduction",
                            mainPanel(
                              h1("Introduction:"),
                              h4("Minimum Wage in states throughout the United States: Do they have any correlation?
                                 We believe that crime exists whether people are being kept alive or not. The government
                                 has long been in denial that the minimum wage should have any influence on crime, and 
                                 maybe that assumption is not off-base."),
+                           )),
+                  tabPanel("Minimum Wage in States",
+                           sidebarPanel(
+                             tags$h3("Input:"),
+                             textInput("search_input", "State", ""),
+                             actionButton("search_button", "Search")
+                             
+                           ), # sidebarPanel
+                           mainPanel(
                              h4("Minimum Wage in 1973:"),
                              DTOutput("Search_result"),
                              
@@ -61,5 +64,7 @@ server <- function(input, output) {
 
 # Create Shiny object
 shinyApp(ui = ui, server = server)
+
+
 
 
