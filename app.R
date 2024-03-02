@@ -13,6 +13,11 @@
 library(shiny)
 library(shinythemes)
 library(DT)
+library(leaflet)
+library(tidyverse)
+library(lubridate)
+library(promises)
+library(future)
 
 ui <- fluidPage(theme = shinytheme("superhero"),
                 navbarPage(
