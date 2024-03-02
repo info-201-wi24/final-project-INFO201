@@ -28,7 +28,7 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                              h4("Minimum Wage in states throughout the United States: Do they have any correlation?
                                 We believe that crime exists whether people are being kept alive or not. The government
                                 has long been in denial that the minimum wage should have any influence on crime, and 
-                                maybe that assumption is not off-base."),
+                                maybe that assumption is not off-base.")
                            )),
                   tabPanel("Minimum Wage in States",
                            sidebarPanel(
@@ -39,7 +39,7 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                            ), # sidebarPanel
                            mainPanel(
                              h4("Minimum Wage in 1973:"),
-                             DTOutput("Search_result"),
+                             DTOutput("Search_result")
                              
                            ) # mainPanel
                            
@@ -53,6 +53,12 @@ ui <- fluidPage(theme = shinytheme("superhero"),
 
 # Define server function  
 server <- function(input, output) {
+  
+  #read in the csv file
+  # data <- read.csv("cleandata.csv") # says cannot read the file as the file doesn't exist
+  # but the file is there within the project directory
+  
+  
   search_data <- eventReactive(input$search_button, {
     search_term <- input$search_input
     subset_data <- subset(data, grepl(search_term, data$Column_to_Search, ignore.case = TRUE))
@@ -69,7 +75,5 @@ server <- function(input, output) {
 
 # Create Shiny object
 shinyApp(ui = ui, server = server)
-
-
 
 
