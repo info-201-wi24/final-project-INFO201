@@ -25,12 +25,16 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                   "Crime in States, VS Minimum Wage, 1973",
                   tabPanel("Introduction",
                            mainPanel(
+                             
+                             # intro page
                              h1("Introduction:"),
                              h4("Minimum Wage in states throughout the United States: Do they have any correlation?
                                 We believe that crime exists whether people are being kept alive or not. The government
                                 has long been in denial that the minimum wage should have any influence on crime, and 
                                 maybe that assumption is not off-base.")
                            )),
+                  
+                  # interactive page 1
                   tabPanel("Minimum Wage in States",
                            sidebarPanel(
                              tags$h3("Input:"),
@@ -45,10 +49,16 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                            ) # mainPanel
                            
                   ), # Navbar 1, tabPanel
+                  
+                  # interactive page 2
                   tabPanel("Interactive Map", "This map will show the crime rate for each state."), # interactive map
+                 
+                  # interactive page 3
                   tabPanel("Interactive Scatterplot", "This scatterplot will show the crime rate compared
                            between each state.",
                            plotlyOutput(outputId = "Crime_Vs_Min_Wage_Plot")), # interactive histogram
+                  
+                  # conclusion page
                   tabPanel("Conclusion")
                 ) # navbarPage
 ) # fluidPage
@@ -58,8 +68,25 @@ ui <- fluidPage(theme = shinytheme("superhero"),
 server <- function(input, output) {
   
   # read in the csv file
-  data <- read.csv("cleandata.csv") # says cannot read the file as the file doesn't exist
+  # data <- read.csv("cleandata.csv") # says cannot read the file as the file doesn't exist
   # but the file is there within the project directory
+  
+  
+  # search csv file for matching result for interactive page 1
+  search_data <- eventReactive(input$search_button, {
+    search_term <- input$search_input
+    subset_data <- subset(data, grepl(search_term, data$Column_to_Search, ignore.case = TRUE))
+    return(subset_data)
+  })
+  
+  output$search_result <- renderDT({
+    search_data()
+  
+  # map for interactive page 2
+  
+  
+  
+  # rendering the plot for interactive page 3
   output$Crime_Vs_Min_Wage_Plot <- renderPlotly({
     my_plot <- ggplot(data) +
       geom_point(mapping = aes (
@@ -67,18 +94,7 @@ server <- function(input, output) {
         y = Assault
       ))
     
-   # return(plot name)
-  })
-  
-  search_data <- eventReactive(input$search_button, {
-    search_term <- input$search_input
-    subset_data <- subset(data, grepl(search_term, data$Column_to_Search, ignore.case = TRUE))
-    return(subset_data)
-  })
-  
-  
-  output$search_result <- renderDT({
-    search_data()
+   return(ggplotly(my_plot))
   })
   
 } # server
