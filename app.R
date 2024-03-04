@@ -18,6 +18,7 @@ library(tidyverse)
 library(lubridate)
 library(promises)
 library(future)
+library(plotly)
 
 ui <- fluidPage(theme = shinytheme("superhero"),
                 navbarPage(
@@ -44,9 +45,11 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                            ) # mainPanel
                            
                   ), # Navbar 1, tabPanel
-                  tabPanel("Interactive Map", "This panel is intentionally left blank"), # interactive map
-                  tabPanel("Interactive Histogram", "This panel is intentionally left blank") # interactive histogram
-                  
+                  tabPanel("Interactive Map", "This map will show the crime rate for each state."), # interactive map
+                  tabPanel("Interactive Histogram", "This histogram will show the crime rate compared
+                           between each state.",
+                           plotlyOutput(outputId = "Crime_Vs_Min_Wage_Plot")), # interactive histogram
+                  tabPanel("Conclusion")
                 ) # navbarPage
 ) # fluidPage
 
@@ -54,10 +57,18 @@ ui <- fluidPage(theme = shinytheme("superhero"),
 # Define server function  
 server <- function(input, output) {
   
-  #read in the csv file
-  # data <- read.csv("cleandata.csv") # says cannot read the file as the file doesn't exist
+  # read in the csv file
+  data <- read.csv("cleandata.csv") # says cannot read the file as the file doesn't exist
   # but the file is there within the project directory
-  
+  output$Crime_Vs_Min_Wage_Plot <- renderPlotly({
+    my_plot <- ggplot(data) +
+      geom_point(mapping = aes (
+        x = State.Minimum.Wage,
+        y = Assault
+      ))
+    
+   # return(plot name)
+  })
   
   search_data <- eventReactive(input$search_button, {
     search_term <- input$search_input
@@ -75,5 +86,3 @@ server <- function(input, output) {
 
 # Create Shiny object
 shinyApp(ui = ui, server = server)
-
-
