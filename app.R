@@ -46,7 +46,7 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                            
                   ), # Navbar 1, tabPanel
                   tabPanel("Interactive Map", "This map will show the crime rate for each state."), # interactive map
-                  tabPanel("Interactive Histogram", "This histogram will show the crime rate compared
+                  tabPanel("Interactive Scatterplot", "This scatterplot will show the crime rate compared
                            between each state.",
                            plotlyOutput(outputId = "Crime_Vs_Min_Wage_Plot")), # interactive histogram
                   tabPanel("Conclusion")
