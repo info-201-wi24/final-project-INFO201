@@ -1,5 +1,3 @@
-
-
 ## OVERVIEW TAB INFO
           
 overview_tab <- tabPanel("Crime Rate vs. Minimum Wage: Introduction",
@@ -12,6 +10,7 @@ overview_tab <- tabPanel("Crime Rate vs. Minimum Wage: Introduction",
       has long been in denial that the minimum wage should have any influence on crime, and 
       maybe that assumption is not off-base.")
 )
+cleandata <- read.csv("/Users/nicholaschou/Downloads/INFO201FinalProject/cleandata.csv")
 
 ## VIZ 1 TAB INFO
 
@@ -23,7 +22,7 @@ viz_1_main_panel <- mainPanel(
   # plotlyOutput(outputId = "your_viz_1_output_id")
 )
 
-viz_1_tab <- tabPanel("Minimum Wage in States",
+viz_1_tab <- tabPanel("Assault Rate in States",
                       sidebarPanel(
                         tags$h3("Input:"),
                         textInput("search_input", "State", ""),
@@ -60,14 +59,18 @@ viz_2_tab <- tabPanel("Viz 2 tab title",
 viz_3_sidebar <- sidebarPanel(
   h2("Options for graph"),
   #TODO: Put inputs for modifying graph here
+  selectInput("stateSelect", "Select State:",
+              choices = unique(cleandata$State),
+              selected = NULL)
 )
 
 viz_3_main_panel <- mainPanel(
-  h2("Vizualization 3 Title"),
+  h2("Assault Rates vs. Minimum Wage by Selected State"),
   # plotlyOutput(outputId = "your_viz_1_output_id")
+  plotlyOutput("crimeWagePlot")
 )
 
-viz_3_tab <- tabPanel("Viz 3 tab title",
+viz_3_tab <- tabPanel("Minimum Wage by Selected Year",
   sidebarLayout(
     viz_3_sidebar,
     viz_3_main_panel
