@@ -8,7 +8,11 @@ overview_tab <- tabPanel("Crime Rate vs. Minimum Wage: Introduction",
       Do they have any correlation?
       We believe that crime exists whether people are being kept alive or not. The government
       has long been in denial that the minimum wage should have any influence on crime, and 
-      maybe that assumption is not off-base.")
+      maybe that assumption is not off-base."),
+    p("In our limited time and access to data from 1973, we tried to account for biases and other 
+inconsistencies within the data. In our analysis, converting the minimum wage from the indicated 
+      data to its value in 2020 provides us with an insight into how much the money presented is 
+      worth."
 )
 cleandata <- read.csv("cleandata.csv")
 
@@ -82,7 +86,10 @@ conclusion_tab <- tabPanel("Conclusion",
  p("In our analysis, the state minimum wage has no bearing on the rate of crime
    in the same state. The key to finding out if minimum wage has any bearing on 
    crime requires a more comprehensive dataset. Our project has concluded that within 
-   a single year crime has relatively little correlation to minimum wage.")
+   a single year crime has relatively little correlation to minimum wage."),
+ p("Our dataset shows that the amount of crime happening in all 50 states across the 
+   United States has almost no correlation to minimum wage. There must be other factors
+   that need to be evaluated in order to draw correlation between wages and criminal activities.")
 )
 
 
