@@ -14,7 +14,7 @@ overview_tab <- tabPanel("Crime Rate vs. Minimum Wage: Introduction",
 )
 
 ## VIZ 1 TAB INFO
-
+## Introduction, viz tab 1, conclusion by Kevin Lee
 
 # searches the loaded csv file for minimum wage of the input(state)
 viz_1_main_panel <- mainPanel(
