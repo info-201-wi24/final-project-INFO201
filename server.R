@@ -1,4 +1,6 @@
+library(dplyr)
 library(shiny)
+library(shinythemes)
 library(DT)
 library(leaflet)
 library(tidyverse)
@@ -7,16 +9,14 @@ library(ggplot2)
 library(maps)
 library(mapproj)
 
-cleandata <- read.csv("cleandata.csv")
-
-
 server <- function(input, output){
+  data <- read.csv("cleandata.csv", header = TRUE)
   # TODO Make outputs based on the UI inputs here
   
   #  searching the file for the right value to return
  # search_data <- eventReactive(input$search_button, {
  #   search_term <- input$search_input
- #   subset_data <- subset(data, grepl(search_term, data$Effective.Minimum.Wage.2020.Dollars, ignore.case = TRUE))
+ #   subset_data <- subset(data, grepl(search_term, data$State.Minimum.Wage, ignore.case = TRUE))
  #   return(subset_data)
  # })
   
@@ -24,7 +24,7 @@ server <- function(input, output){
     # req(input$search_button) # Require the goButton to be clicked
     search_data <- input$search_input
     # Filter data based on search input
-    # subset(data, grepl(search_data, data$Effective.Minimum.Wage.2020.Dollars, ignore.case = TRUE))
+    # subset(data, grepl(search_data, data$State.Minimum.Wage, ignore.case = TRUE))
     result <- data[data$State == search_data, "Assault"]
     return(result)
   })
