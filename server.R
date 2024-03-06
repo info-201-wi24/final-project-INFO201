@@ -12,7 +12,7 @@ library(ggplot2)
 library(maps)
 library(mapproj)
 
-cleandata <- read.csv("/Users/nicholaschou/Downloads/INFO201FinalProject/cleandata.csv")
+cleandata <- read.csv("cleandata.csv")
 cleandata <- cleandata %>%
   mutate(...1 = NULL,
          Year = NULL,
