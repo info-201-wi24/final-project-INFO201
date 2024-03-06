@@ -1,3 +1,5 @@
+
+
 ## OVERVIEW TAB INFO
           
 overview_tab <- tabPanel("Crime Rate vs. Minimum Wage: Introduction",
@@ -8,13 +10,8 @@ overview_tab <- tabPanel("Crime Rate vs. Minimum Wage: Introduction",
       Do they have any correlation?
       We believe that crime exists whether people are being kept alive or not. The government
       has long been in denial that the minimum wage should have any influence on crime, and 
-      maybe that assumption is not off-base."),
-    p("In our limited time and access to data from 1973, we tried to account for biases and other 
-inconsistencies within the data. In our analysis, converting the minimum wage from the indicated 
-      data to its value in 2020 provides us with an insight into how much the money presented is 
-      worth."
+      maybe that assumption is not off-base.")
 )
-cleandata <- read.csv("cleandata.csv")
 
 ## VIZ 1 TAB INFO
 
@@ -26,7 +23,7 @@ viz_1_main_panel <- mainPanel(
   # plotlyOutput(outputId = "your_viz_1_output_id")
 )
 
-viz_1_tab <- tabPanel("Assault Rate in States",
+viz_1_tab <- tabPanel("Minimum Wage in States",
                       sidebarPanel(
                         tags$h3("Input:"),
                         textInput("search_input", "State", ""),
@@ -41,9 +38,7 @@ viz_1_tab <- tabPanel("Assault Rate in States",
 
 ## VIZ 2 TAB INFO
 # Maikanh Tran
-viz_2_sidebar <- sidebarPanel(
-  h2("Interactive Map"),
-  #TODO: Put inputs for modifying graph here
+viz_2_sidebar <- sidebarPanel(  #TODO: Put inputs for modifying graph here
 )
 
 viz_2_main_panel <- mainPanel(
@@ -61,7 +56,7 @@ viz_2_tab <- tabPanel("Viz 2 tab title",
 ## VIZ 3 TAB INFO
 # Nicholas Chou
 viz_3_sidebar <- sidebarPanel(
-  h2("Options for graph"),
+  h2("Interactive Scatter Plot by State"),
   selectInput("stateSelect", "Select State:",
               choices = unique(cleandata$State),
               selected = NULL)
@@ -73,10 +68,10 @@ viz_3_main_panel <- mainPanel(
 )
 
 viz_3_tab <- tabPanel("Assault Rates vs. Minimum Wage",
-  sidebarLayout(
-    viz_3_sidebar,
-    viz_3_main_panel
-  )
+                      sidebarLayout(
+                        viz_3_sidebar,
+                        viz_3_main_panel
+                      )
 )
 
 ## CONCLUSIONS TAB INFO
@@ -87,14 +82,16 @@ conclusion_tab <- tabPanel("Conclusion",
    in the same state. The key to finding out if minimum wage has any bearing on 
    crime requires a more comprehensive dataset. Our project has concluded that within 
    a single year crime has relatively little correlation to minimum wage."),
- p("Our dataset shows that the amount of crime happening in all 50 states across the 
-   United States has almost no correlation to minimum wage. There must be other factors
-   that need to be evaluated in order to draw correlation between wages and criminal activities.")
+ p("Initially, our cleaned data looked as if that there was a connection between
+   minimum wage and assault rates, but after cleaning and closely analyzing the data,
+   we found that there is no correlation between the two, and criminal activity is 
+   impacted by a lot of factors that determine whether an individual would commit to it 
+   or not.")
 )
 
 
 
-ui <- navbarPage("INFO 201 - Crime Rates vs. Minimum Wage 1972",
+ui <- navbarPage("INFO 201 - Crime Rates vs. Minimum Wage 1973",
   overview_tab,
   viz_1_tab,
   viz_2_tab,
