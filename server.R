@@ -19,7 +19,8 @@ server <- function(input, output){
  #   subset_data <- subset(data, grepl(search_term, data$State.Minimum.Wage, ignore.case = TRUE))
  #   return(subset_data)
  # })
-  
+
+  # viz tab 1 done by Kevin Lee
   searchResults <- reactive({
     # req(input$search_button) # Require the goButton to be clicked
     search_data <- input$search_input
