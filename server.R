@@ -75,11 +75,10 @@ server <- function(input, output){
     # return using ggplotly
     return(ggplotly(state_plot))
   })
-}
-
-server <- function(input, output) {
-  output$crimeWagePlot <- renderPlotly({
   
+  # for plot for VIZ 3
+  output$crimeWagePlot <- renderPlotly({
+    
     filteredData <- cleandata %>%
       filter(State == input$stateSelect)
     
