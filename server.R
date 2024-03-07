@@ -57,6 +57,27 @@ server <- function(input, output){
     # return using ggplotly
     return(ggplotly(state_plot))
   })
+
+  # VIZ 2 line graphs
+  output$crimePlot <- renderPlotly({
+    req(input$selectedState, input$selectedCrime)
+    
+    # Calculate the global maximum and minimum values across all states for the selected crime
+    global_max <- max(cleandata[[input$selectedCrime]], na.rm = TRUE)
+    global_min <- min(cleandata[[input$selectedCrime]], na.rm = TRUE)
+    
+    # Filter data for the selected state and crime category
+    crime_data <- cleandata %>%
+      filter(State == input$selectedState) %>%
+      select(State, all_of(input$selectedCrime))
+    
+    # Create the plotly bar graph for the selected state and crime category
+    p <- plot_ly(crime_data, x = ~State, y = as.formula(paste0("~`", input$selectedCrime, "`")),
+                 type = 'bar', name = input$selectedCrime) %>%
+      layout(yaxis = list(title = input$selectedCrime, range = c(global_min, global_max)))
+    
+    p
+  })
   
   # for plot for VIZ 3
   output$crimeWagePlot <- renderPlotly({
