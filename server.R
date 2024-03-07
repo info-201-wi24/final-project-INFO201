@@ -1,32 +1,32 @@
 library(dplyr)
 library(shiny)
-library(shinythemes)
 library(DT)
 library(leaflet)
 library(tidyverse)
 library(plotly)
 library(ggplot2)
-library(maps)
-library(mapproj)
+#library(terra)
+#library(maps)
+#library(mapproj)
+
+cleandata <- read.csv("cleandata.csv")
 
 server <- function(input, output){
-  data <- read.csv("cleandata.csv", header = TRUE)
   # TODO Make outputs based on the UI inputs here
   
   #  searching the file for the right value to return
- # search_data <- eventReactive(input$search_button, {
- #   search_term <- input$search_input
- #   subset_data <- subset(data, grepl(search_term, data$State.Minimum.Wage, ignore.case = TRUE))
- #   return(subset_data)
- # })
-
-  # viz tab 1 done by Kevin Lee
+  # search_data <- eventReactive(input$search_button, {
+  #   search_term <- input$search_input
+  #   subset_data <- subset(data, grepl(search_term, data$Effective.Minimum.Wage.2020.Dollars, ignore.case = TRUE))
+  #   return(subset_data)
+  # })
+  
   searchResults <- reactive({
     # req(input$search_button) # Require the goButton to be clicked
     search_data <- input$search_input
     # Filter data based on search input
-    # subset(data, grepl(search_data, data$State.Minimum.Wage, ignore.case = TRUE))
-    result <- data[data$State == search_data, "Assault"]
+    # subset(data, grepl(search_data, data$Effective.Minimum.Wage.2020.Dollars, ignore.case = TRUE))
+    result <- cleandata[cleandata$State == search_data, "Assault"]
     return(result)
   })
   
@@ -57,7 +57,8 @@ server <- function(input, output){
     # return using ggplotly
     return(ggplotly(state_plot))
   })
-
+  
+  
   # VIZ 2 line graphs
   output$crimePlot <- renderPlotly({
     req(input$selectedState, input$selectedCrime)
@@ -78,6 +79,7 @@ server <- function(input, output){
     
     p
   })
+  
   
   # for plot for VIZ 3
   output$crimeWagePlot <- renderPlotly({
