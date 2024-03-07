@@ -1,3 +1,6 @@
+library(DT)
+library(plotly)
+
 cleandata <- read.csv("cleandata.csv")
 
 
