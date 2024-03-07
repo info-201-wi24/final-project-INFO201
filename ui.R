@@ -1,3 +1,4 @@
+cleandata <- read.csv("cleandata.csv")
 
 
 ## OVERVIEW TAB INFO
@@ -8,22 +9,17 @@ overview_tab <- tabPanel("Crime Rate vs. Minimum Wage: Introduction",
      Maikanh Tran, and Nicholas Chou"),
    p("Minimum Wage in states throughout the United States in 1973: 
       Do they have any correlation?
-      In 1973, the enivironment of the United States had many 
-      socio-economic dynamics, from the debate around the minimum wage becoming
-      a populat discussion topic to the increase in crimes as the US became
-      more developed. Would a higher minimum wage 
-      deter crime by providing individuals with the economic means to escape poverty, 
-      or are crime rates unaffected by wage policies, driven instead by more 
-      complex social factors? We believe that crime exists whether people are being 
-      kept alive or not. 
-      The government has long been in denial that the minimum wage should have any influence on crime, and 
+      We believe that crime exists whether people are being kept alive or not. The government
+      has long been in denial that the minimum wage should have any influence on crime, and 
       maybe that assumption is not off-base.")
 )
 
 ## VIZ 1 TAB INFO
-## Introduction, viz tab 1, conclusion by Kevin Lee
+# Introduction, viz tab 1, conclusion by Kevin Lee
+
 
 # searches the loaded csv file for minimum wage of the input(state)
+
 viz_1_main_panel <- mainPanel(
   h4("Minimum Wage in 1973:"),
   DTOutput("Search_result")
@@ -62,7 +58,6 @@ viz_2_tab <- tabPanel("Crimes by state",
                         viz_2_main_panel
                       )
 )
-
 ## VIZ 3 TAB INFO
 # Nicholas Chou
 viz_3_sidebar <- sidebarPanel(
@@ -96,10 +91,7 @@ conclusion_tab <- tabPanel("Conclusion",
    minimum wage and assault rates, but after cleaning and closely analyzing the data,
    we found that there is no correlation between the two, and criminal activity is 
    impacted by a lot of factors that determine whether an individual would commit to it 
-   or not. This analysis 
-   will not only contribute to historical economic 
-  research but may also inform current policy discussions. By understanding the past, 
-  we can make more informed decisions for the future.")
+   or not.")
 )
 
 
